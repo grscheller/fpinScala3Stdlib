@@ -1,4 +1,4 @@
-// SBT uses a horrible DSL - I modified this from the one used by ShapelessCat
+// Modified from the version used by ShapelessCat
 
 ThisBuild / scalaVersion := "3.3.0"  // Latest LTS release as of 2023/07/04 
 
@@ -21,6 +21,10 @@ ThisBuild / javacOptions := Seq(
   "-source", "17",       // Latest LTS release of Java as of 2023/07/04
   "-Xlint:unchecked",
   "-Xlint:deprecation"
+)
+
+ThisBuild / libraryDependencies ++= Seq(
+  "com.lihaoyi" % "fansi_2.13" % "0.4.0"
 )
 
 lazy val root = (project in file("."))

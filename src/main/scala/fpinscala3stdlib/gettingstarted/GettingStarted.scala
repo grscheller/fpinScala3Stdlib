@@ -16,7 +16,6 @@ object MyModule {
   // it will change the state of your monitor.
   @main def printAbsNeg42() =
     println(formatAbs(-42))
-
 }
 
 /** Refactored version of MyModule */
@@ -46,18 +45,24 @@ object MyModuleRefactored {
     fib(n, 1, 0)
   }
 
-  private def formatResult(name: String, n: Int, f: Int => Int) = {
+  private def colorFormat(name: String, n: Int, f: Int => Int, color: String): fansi.Str = {
     val msg = "The %s %d is %d"
-    msg.format(name, n, f(n))
+    val msg_formatted = msg.format(name, n, f(n))
+    color match {
+      case "Yellow" => fansi.Color.Yellow(msg_formatted);
+      case "Blue"   => fansi.Color.Blue(msg_formatted);
+      case "Green"  => fansi.Color.Green(msg_formatted);
+      case _        => fansi.Color.Red(msg_formatted);
+    }
   }
 
   def main(args: Array[String]) = {
-    println(formatResult("absolute value of", -42, abs))
-    println(formatResult("factorial of", 5, factorial))
-    println(formatResult("factorial of", 11, factorial))
-    println(formatResult("fibonacci element", 0, fibonacci))
-    println(formatResult("fibonacci element", 1, fibonacci))
-    println(formatResult("fibonacci element", 6, fibonacci))
-    println(formatResult("fibonacci element", 42, fibonacci))
+    println(colorFormat("absolute value of", -42, abs, "Green"))
+    println(colorFormat("factorial of", 5, factorial, "Yellow"))
+    println(colorFormat("factorial of", 11, factorial, "Yellow"))
+    println(colorFormat("fibonacci element", 0, fibonacci, "Blue"))
+    println(colorFormat("fibonacci element", 1, fibonacci, "Blue"))
+    println(colorFormat("fibonacci element", 6, fibonacci, "Blue"))
+    println(colorFormat("fibonacci element", 42, fibonacci, "Blue"))
   }
 }
