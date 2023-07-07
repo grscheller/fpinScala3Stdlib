@@ -66,3 +66,24 @@ object MyObjectRefactored {
     println(colorFormat("fibonacci element", 42, fibonacci, "Blue"))
   }
 }
+
+object ArrayStuff {
+
+  def findFirst[A](as: Array[A], p: A => Boolean): Int = {
+    @annotation.tailrec
+    def loop(n: Int): Int =
+      if n < as.length
+      then
+        if p(as(n))
+        then n
+        else loop(n + 1)
+      else -1
+
+    loop(0)
+  }
+
+  def main(args: Array[String]) = {
+    val msg1 = "Index first '%s' in cmdline arguments: %d"
+    println(msg1.format("foo", findFirst(args, _ == "foo")))
+  }
+}
