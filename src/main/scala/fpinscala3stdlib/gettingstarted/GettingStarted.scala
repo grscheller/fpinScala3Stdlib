@@ -1,7 +1,7 @@
 package fpinscala3stdlib.gettingstarted
 
-/** A very simple module called MyModule */
-object MyModule {
+/** A very simple "module" called MyObject */
+object MyObject {
   def abs(n: Int): Int =
     if n < 0
     then -n
@@ -18,10 +18,10 @@ object MyModule {
     println(formatAbs(-42))
 }
 
-/** Refactored version of MyModule */
-object MyModuleRefactored {
+/** Refactored version of MyObject */
+object MyObjectRefactored {
 
-  import MyModule.*
+  import MyObject.*
 
   /** Returns the factorial of the absolute value of Int argument */
   def factorial(n: Int): Int = {
