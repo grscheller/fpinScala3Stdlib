@@ -81,9 +81,42 @@ object ArrayStuff {
 
     loop(0)
   }
+  
+  def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
+    @annotation.tailrec
+    def loop(n: Int): Boolean =
+      if n < as.length
+      then
+        if ordered(as(n - 1), as(n))
+        then loop(n + 1)
+        else false
+      else true
+
+    loop(1)
+  }
 
   def main(args: Array[String]) = {
     val msg1 = "Index first '%s' in cmdline arguments: %d"
+    val msg2 = "Index first '%s' in Array(\"baz\", \"bar\", \"foo\", \"foo\", \"buzz\"): %d"
     println(msg1.format("foo", findFirst(args, _ == "foo")))
+    println(msg2.format("foo", findFirst(Array("baz", "bar", "foo", "foo", "buzz"), _ == "foo")))
+    println(msg2.format("bar", findFirst(Array("baz", "bar", "foo", "foo", "buzz"), _ == "bar")))
+    val sorted_int_array = Array(1,2,42)
+    val notsorted_int_array = Array(1,3,2,7)
+    val sorted_str_array = Array("foobar", "foo", "a", "")
+    val notsorted_str_array = Array("woo", "foofo", "foobar", "zoo")
+    val msg = "%s %s sorted"
+    if isSorted(sorted_int_array, _ <= _)
+    then println(msg.format("Sorted int array is", "low to high"))
+    else println(msg.format("Sorted int array is not", "low to high"))
+    if isSorted(notsorted_int_array, _ <= _)
+    then println(msg.format("Not sorted int array is", "low to high"))
+    else println(msg.format("Not sorted int array is not", "low to high"))
+    if isSorted(sorted_str_array, _ > _)
+    then println(msg.format("Sorted string array is", "strictly decreasingly"))
+    else println(msg.format("Sorted string array is not", "strictly decreasingly"))
+    if isSorted(notsorted_str_array, _ > _)
+    then println(msg.format("Not sorted string array is", "strictly decreasing"))
+    else println(msg.format("Not sorted string array is not", "strictly decreasing"))
   }
 }
