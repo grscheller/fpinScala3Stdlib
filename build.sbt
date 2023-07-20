@@ -9,12 +9,13 @@ ThisBuild / scalacOptions ++= Seq(
   "-explain",            // Explain errors in more detail.
   "-explain-types",      // Explain type errors in more detail.
   "-unchecked",          // Enable additional warnings where generated code depends on assumptions.
-  "-Xfatal-warnings",    // Fail the compilation if there are any warnings.
   "-new-syntax",         // Require `then` and `do` in control expressions.
+  "-Wunused:all",        // Warn about various unused symbols
   "-rewrite",
   "-Ykind-projector:underscores",
 //  "-Ykind-projector",
   "-source:future-migration",
+//  "-Xfatal-warnings",    // Fail the compilation if there are any warnings.
 )
 
 ThisBuild / javacOptions := Seq(

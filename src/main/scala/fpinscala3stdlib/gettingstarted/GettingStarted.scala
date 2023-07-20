@@ -22,6 +22,10 @@ object MyObject {
 object MyObjectRefactored {
 
   import MyObject.*
+  
+  val usedPosVal: Int = 42
+  val usedNegVal: Int = -42
+  val unusedVal: Int = 13
 
   /** Returns the factorial of the absolute value of Int argument */
   def factorial(n: Int): Int = {
@@ -45,9 +49,10 @@ object MyObjectRefactored {
     fib(n, 1, 0)
   }
 
-  private def colorFormat(name: String, n: Int, f: Int => Int, color: String): fansi.Str = {
+  private def colorFormat(name: String, n: Int, f: Int => Int, color: Any): fansi.Str = {
     val msg = "The %s %d is %d"
     val msg_formatted = msg.format(name, n, f(n))
+    val msg_unused = "I am unused"
     color match {
       case "Yellow" => fansi.Color.Yellow(msg_formatted);
       case "Blue"   => fansi.Color.Blue(msg_formatted);
@@ -57,12 +62,13 @@ object MyObjectRefactored {
   }
 
   def main(args: Array[String]) = {
-    println(colorFormat("absolute value of", -42, abs, "Green"))
+    println(colorFormat("absolute value of", usedNegVal, abs, "Green"))
+    println(colorFormat("absolute value of", usedPosVal, abs, "Green"))
     println(colorFormat("factorial of", 5, factorial, "Yellow"))
     println(colorFormat("factorial of", 11, factorial, "Yellow"))
     println(colorFormat("fibonacci element", 0, fibonacci, "Blue"))
     println(colorFormat("fibonacci element", 1, fibonacci, "Blue"))
-    println(colorFormat("fibonacci element", 6, fibonacci, "Blue"))
+    println(colorFormat("fibonacci element", 6, fibonacci, 5))
     println(colorFormat("fibonacci element", 42, fibonacci, "Blue"))
   }
 }
