@@ -26,7 +26,7 @@ ThisBuild / javacOptions := Seq(
 
 ThisBuild / libraryDependencies ++= Seq(
   "com.lihaoyi" % "fansi_2.13" % "0.4.0",
-  "org.scalactic" %% "scalactic" % "3.2.16",
+  "org.scalactic" %% "scalactic" % "3.2.16" % "test",
   "org.scalatest" %% "scalatest" % "3.2.16" % "test"
 )
 
