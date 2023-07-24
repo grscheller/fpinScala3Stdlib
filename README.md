@@ -1,4 +1,4 @@
-## Functional Programing in Scala leveraging Scala's Std Library 
+## Functional Programing in Scala leveraging Scala's Std Libraries 
 
 ### Description
 
@@ -8,14 +8,19 @@ by ShapelessCat/fpinscala3 Scala3 version of the books exercises.
 
 ### Purpose
 
-Unlike the book exercises, the purpose is not to recreate an entire FP
-infrastructure from scratch. The purpose is to leverage the Scala
-Standard libraries and selected external libraries to give *efficient*
+Unlike the book exercises, the purpose is not to create an entire FP
+infrastructure from scratch. Instead it is to leverage the Scala
+Standard libraries, and selected external libraries, to give *efficient*
 examples of functional programming. By *functional* I do not necessarily
-mean *pure*; I am willing to push *imperative* code to innermost or
-outermost scopes.
+mean *pure*. Functional interfaces are fine. I am willing to push
+*imperative* code to innermost scopes in threadsafe ways.
 
 ### Development log:
+
+#### 2023-07-23:
+
+Implemented gettingstarted.higherOrder object. Also added an iteration
+methods. Test out on Scala console.
 
 #### 2023-07-22:
 
@@ -44,4 +49,4 @@ Previously got through Chapter 9, Parsor Combinators, on my own. I last
 worked on it Jul 17, 2021 when I updated for use with Scala 3. The last
 version of this is contained in the exercises branch of this repo. Its
 development history is contained in my grscheller/scheller-linux-archive
-repo. I intially started work on it on Apr 10, 2016.
+repo. I intially started work on it Apr 10, 2016.

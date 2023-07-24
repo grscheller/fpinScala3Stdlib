@@ -138,3 +138,40 @@ object ArrayStuff {
     println()
   }
 }
+
+//* Polymorphic combinators */
+object higherOrder {
+  def partial1[A,B,C](a: A, f: (A,B) => C): B => C =
+    b => f(a, b)
+
+  def partial2[A,B,C](b: B, f: (A,B) => C): A => C =
+    a => f(a, b)
+
+  def curry[A,B,C](f: (A,B) => C): A => B => C =
+    a => b => f(a, b)
+
+  def uncurry[A,B,C](f: A => B => C): (A,B) => C =
+    (a, b) => f(a)(b)
+
+  def compose[A,B,C](f: B => C, g: A => B): A => C =
+    (a: A) => f(g(a))
+
+  def swap[A,B,C](f: (A,B) => C): (B,A) => C =
+    (b, a) => f(a, b)
+
+  def iterate[A](f: A => A)(a: A)(n: Int): A = {
+    @annotation.tailrec
+    def recurr(nn: Int, aa: A): A =
+      if nn <= 0
+      then aa
+      else recurr(nn-1, f(aa))
+
+    recurr(n, a)
+  }
+
+  def iterate1[A](a: A, f: A => A): Int => A =
+    iterate(f)(a)
+
+  def iterate2[A](n: Int, f: A => A): A => A =
+    a => iterate(f)(a)(n) 
+}
