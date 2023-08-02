@@ -19,7 +19,7 @@ mean *pure*. Functional interfaces are fine. I am willing to push
 
 #### 2023-07-23:
 
-Implemented gettingstarted.higherOrder object. Also added an iteration
+Implemented gettingstarted.higherOrder object. Also added some iteration
 methods. Test out on Scala console.
 
 #### 2023-07-22:
