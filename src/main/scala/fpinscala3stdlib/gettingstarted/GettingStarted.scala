@@ -30,12 +30,12 @@ object MyObjectRefactored {
   /** Returns the factorial of the absolute value of Int argument */
   def factorial(n: Int): Int = {
     @annotation.tailrec
-    def loop(n: Int, acc: Int): Int =
+    def recur(n: Int, acc: Int): Int =
       if n == 0
       then  acc
-      else loop(n-1, n*acc)
+      else recur(n-1, n*acc)
 
-    loop(abs(n), 1)
+    recur(abs(n), 1)
   }
 
   def fibonacci(n: Int) = {
@@ -79,28 +79,28 @@ object ArrayStuff {
 
   def findFirst[A](as: Array[A], p: A => Boolean): Int = {
     @annotation.tailrec
-    def loop(n: Int): Int =
+    def recur(n: Int): Int =
       if n < as.length
       then
         if p(as(n))
         then n
-        else loop(n + 1)
+        else recur(n + 1)
       else -1
 
-    loop(0)
+    recur(0)
   }
   
   def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
     @annotation.tailrec
-    def loop(n: Int): Boolean =
+    def recur(n: Int): Boolean =
       if n < as.length
       then
         if ordered(as(n - 1), as(n))
-        then loop(n + 1)
+        then recur(n + 1)
         else false
       else true
 
-    loop(1)
+    recur(1)
   }
 
   def main(args: Array[String]) = {
@@ -134,6 +134,13 @@ object ArrayStuff {
     if isSorted(notsorted_str_array, _ > _)
     then println(msg.format("Not sorted string array is", "strictly decreasing"))
     else println(msg.format("Not sorted string array is not", "strictly decreasing"))
+
+    val arr1 = Array[Double](1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    val arr2 = Array(1, 1, 0, 0, 0, 1, 1, 1, 0, 0)
+    def sumI(a: Int, b: Int):Int = a + b
+    def sumD(a: Double, b: Double): Double = a + b
+    println("Sum of 1.0 to 10.0: %f".format(arr1.aggregate(0.0)(sumD, sumD)))
+    println("Should sum to 5: %d".format(arr2.aggregate(0)(sumI, sumI)))
 
     println()
   }
