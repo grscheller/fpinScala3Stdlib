@@ -139,8 +139,8 @@ object ArrayStuff {
     val arr2 = Array(1, 1, 0, 0, 0, 1, 1, 1, 0, 0)
     def sumI(a: Int, b: Int):Int = a + b
     def sumD(a: Double, b: Double): Double = a + b
-    println("Sum of 1.0 to 10.0: %f".format(arr1.aggregate(0.0)(sumD, sumD)))
-    println("Should sum to 5: %d".format(arr2.aggregate(0)(sumI, sumI)))
+    println("Sum of 1.0 to 10.0: %f".format(arr1.foldLeft(0.0)(sumD)))
+    println("Should sum to 5: %d".format(arr2.foldLeft(0)(sumI)))
 
     println()
   }
@@ -168,12 +168,12 @@ object higherOrder {
 
   def iterate[A](f: A => A)(a: A)(n: Int): A = {
     @annotation.tailrec
-    def recurr(nn: Int, aa: A): A =
+    def recur(nn: Int, aa: A): A =
       if nn <= 0
       then aa
-      else recurr(nn-1, f(aa))
+      else recur(nn-1, f(aa))
 
-    recurr(n, a)
+    recur(n, a)
   }
 
   def iterate1[A](a: A, f: A => A): Int => A =
