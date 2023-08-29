@@ -20,7 +20,7 @@ mean *pure*. Functional interfaces are fine. I am willing to push
 #### 2023-07-23:
 
 Implemented gettingstarted.higherOrder object. Also added some iteration
-methods. Test out on Scala console.
+methods. Tested out on Scala console.
 
 #### 2023-07-22:
 
@@ -46,7 +46,8 @@ Started the grscheller/fpinscala3stdlib GitHub repo.
 #### 2023-07-04:
 
 Previously got through Chapter 9, Parsor Combinators, on my own. I last
-worked on it Jul 17, 2021 when I updated for use with Scala 3. The last
-version of this is contained in the exercises branch of this repo. Its
-development history is contained in my grscheller/scheller-linux-archive
-repo. I intially started work on it Apr 10, 2016.
+worked on this material Jul 17, 2021 when I updated it for use with
+Scala 3. The last version of this is contained in the exercises branch
+of this repo. Its development history is contained in the GIT history of
+my grscheller/scheller-linux-archive repo. I intially started work on it
+Apr 10, 2016.
