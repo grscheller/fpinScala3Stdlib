@@ -9,7 +9,7 @@ I have set up my own build.sbt file and am not using the canned SBT
 setup supplied [here](https://github.com/fpinscala/fpinscala) by the
 authors.
 
-Scala is a hybrid functional/oo language which runs on
+Scala is a hybrid Functional/OO language which runs on
 the Java Virtual Machine (JVM).
 
 ## Packages and corresponding book chapters
