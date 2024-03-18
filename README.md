@@ -13,9 +13,9 @@ infrastructure from scratch. Instead it is to leverage the Scala
 Standard libraries, and selected external libraries, to give *efficient*
 examples of Functional Programming. By *Functional* I do not necessarily
 mean *pure*. Functional interfaces are fine. I am willing to push
-*Imperative* code to innermost scopes in threadsafe ways.
+*Imperative* code to innermost scopes in thread-safe ways.
 
 ### Development log:
 
-See the [CHANGELOG](CHANGELOG.md) for the developmeent history of this
+See the [CHANGELOG](CHANGELOG.md) for the development history of this
 project.
