@@ -21,7 +21,7 @@ package fpinscala.state
   *
   *    type Rand[A] = RNG => (A, RNG)
   *
-  *  The get and set combinators in the companion object
+  *  The get and set combinatorics in the companion object
   *  are used to manipulate the state.  They are what
   *  makes this the "State" monad.
   */
