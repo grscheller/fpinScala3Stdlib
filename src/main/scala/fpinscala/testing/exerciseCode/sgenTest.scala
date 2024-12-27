@@ -26,11 +26,11 @@ object sgenTest {
     val rollSome = rollTwoDice.listOf
 
     println("\nRoll a pair of dice 5 times:")
-    for (throwTwo <- rollSome(5) sample rng1) {
+    for (throwTwo <- rollSome(5).sample(rng1)) {
       println(throwTwo)
     }
     println("\nRoll a pair of dice 3 times:")
-    for (throwTwo <- rollSome(3) sample rng2) {
+    for (throwTwo <- rollSome(3).sample(rng2)) {
       println(throwTwo)
     }
 
@@ -38,10 +38,10 @@ object sgenTest {
     val roll2toRoll1 = rollSome flatMap { ns => dieRoll.listOf(ns.min) }
     for (nn <- Seq(1, 2, 3, 4, 5, 10, 20, 35, 50, 100)) {
       println(s"Least of ${nn} double rolls:")
-      println(roll2toRoll1(nn) sample rng1)
-      println(roll2toRoll1(nn) sample rng2)
-      println(roll2toRoll1(nn) sample rng3)
-      println(roll2toRoll1(nn) sample rng4)
+      println(roll2toRoll1(nn).sample(rng1))
+      println(roll2toRoll1(nn).sample(rng2))
+      println(roll2toRoll1(nn).sample(rng3))
+      println(roll2toRoll1(nn).sample(rng4))
       println()
     }
 

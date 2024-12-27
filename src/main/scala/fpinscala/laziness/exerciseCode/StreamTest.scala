@@ -147,13 +147,15 @@ object StreamTest{
     println("\nTest exists\n")
 
     print("3 and 5 are ")
-    if (oneToTwenty exists ((b) => b % 3 == 0 && b % 5 == 0))
+    if oneToTwenty.exists((b) => b % 3 == 0 && b % 5 == 0)
+    then
       println("factors of something in 1...20")
     else
       println("not factors of anything in 1...20")
 
     print("17 and 13 are ")
-    if (oneToTwenty exists ((b) => b % 17 == 0 && b % 13 == 0))
+    if oneToTwenty.exists((b) => b % 17 == 0 && b % 13 == 0)
+    then
       println("factors of something in 1...20")
     else
       println("not factors of anything in 1...20")
@@ -161,22 +163,24 @@ object StreamTest{
     println("\nTest exists1\n")
 
     print("3 and 5 are ")
-    if (oneToTwenty exists1 ((b) => b % 3 == 0 && b % 5 == 0))
+    if oneToTwenty.exists1((b) => b % 3 == 0 && b % 5 == 0)
+    then
       println("factors of something in 1...20")
     else
       println("not factors of anything in 1...20")
 
     print("17 and 13 are ")
-    if (oneToTwenty exists1 ((b) => b % 17 == 0 && b % 13 == 0))
+    if oneToTwenty.exists1((b) => b % 17 == 0 && b % 13 == 0)
+    then
       println("factors of something in 1...20.")
     else
       println("not factors of anything in 1...20")
 
     println("\nTest forAll\n")
-    print("oneToTwenty forAll (_ < 10) = ")
-    println(oneToTwenty forAll (_ < 10))
-    print("oneToTwenty forAll (_ < 30) = ")
-    println(oneToTwenty forAll (_ < 30))
+    print("oneToTwenty forAll(_ < 10) = ")
+    println(oneToTwenty.forAll(_ < 10))
+    print("oneToTwenty.forAll(_ < 30) = ")
+    println(oneToTwenty.forAll(_ < 30))
 
     val bad1To6 =
       cons({print("<1>"); 1},
@@ -187,10 +191,10 @@ object StreamTest{
                 cons({print("<6>"); 6},
                   empty))))))
 
-    print("\nbad1To6 forAll (_ < 3) = ")
-    println(bad1To6 forAll (_ < 3))
-    print("bad1To6 forAll (_ < 10) = ")
-    println(bad1To6 forAll (_ < 10))
+    print("\nbad1To6.forAll(_ < 3) = ")
+    println(bad1To6.forAll(_ < 3))
+    print("bad1To6.forAll(_ < 10) = ")
+    println(bad1To6.forAll(_ < 10))
 
     // Test takeWhile and dropWhile method
 
@@ -344,11 +348,11 @@ object StreamTest{
 
     }
 
-    print("(numStrings flatMap1 numStringToCharStream).toList = ")
-    println((numStrings flatMap1 numStringToCharStream).toList)
+    print("numStrings.flatMap1(numStringToCharStream).toList() = ")
+    println(numStrings.flatMap1(numStringToCharStream).toList())
 
-    print("(numStrings flatMap numStringToCharStream).toList = ")
-    println((numStrings flatMap numStringToCharStream).toList)
+    print("numStrings.flatMap(numStringToCharStream).toList() = ")
+    println(numStrings.flatMap(numStringToCharStream).toList())
 
     println("\nCompare flatMap1 and flatMap with unevaluated data:\n")
 
@@ -369,11 +373,11 @@ object StreamTest{
                 cons({print("<3>"); "3"},
                   empty))))))
 
-    print("(unEval1 flatMap1 numStringToCharStream).toList = ")
-    println((unEval1 flatMap1 numStringToCharStream).toList)
+    print("unEval1.flatMap1(numStringToCharStream).toList() = ")
+    println(unEval1.flatMap1(numStringToCharStream).toList())
 
-    print("(unEval2 flatMap numStringToCharStream).toList = ")
-    println((unEval2 flatMap numStringToCharStream).toList)
+    print("unEval2.flatMap(numStringToCharStream).toList() = ")
+    println(unEval2.flatMap(numStringToCharStream).toList())
 
     println("\nTest flatMap via for comprehension:\n")
 
@@ -500,7 +504,7 @@ object StreamTest{
     printFruitStreamVersions(streamOfMaybeFruit filter {
         case Some(_) => true
         case _ => false
-      } map (_.get))
+      }.map(_.get))
 
     println()
 

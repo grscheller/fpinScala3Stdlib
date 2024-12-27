@@ -252,7 +252,7 @@ object Par {
     */
   def joinBlockingInside[A](ppa: Par[Par[A]]): Par[A] =
     new Par[A] {
-      def apply(es: ES) = (ppa map (_.run(es)))(es)
+      def apply(es: ES) = (ppa.map(_.run(es)))(es)
     }
 
   /** join via flatMap
@@ -313,7 +313,7 @@ object Par {
 
   /** Change a List of pars into a par of a List. */
   def sequence[A](ps: List[Par[A]]): Par[List[A]] =
-    sequenceIndexedSeq(ps.toVector) map (_.toList)
+    sequenceIndexedSeq(ps.toVector).map(_.toList)
 
   /** Create a calcultion to map over a list in parallel
     *

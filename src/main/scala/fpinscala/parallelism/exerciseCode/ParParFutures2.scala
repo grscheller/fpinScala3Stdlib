@@ -39,7 +39,7 @@ object ParParFutures2 {
     println("\nContrived map2ViaActor vs map2ViaFlatMap comparison:")
     val list1to1000 = (1 to 1000).toList
 
-    val viaMap2 = list1to1000.map(unit(_) map ((ii: Int) => 
+    val viaMap2 = list1to1000.map(unit(_).map((ii: Int) =>
       ii % 42)).foldLeft(unit(0))((p1: Par[Int], p2: Par[Int]) => 
         p1.map2(p2)(_ + _)) map { println(_: Int) }
 
@@ -90,9 +90,9 @@ object ParParFutures2 {
 
     println("\nCompare join implementations (~4 seconds each):")
 
-    val ppb1: Par[Par[Boolean]] = makeSlowBoolPar(true) map makeSlowBoolPar
-    val ppb2: Par[Par[Boolean]] = makeSlowBoolPar(true) map makeSlowBoolPar
-    val ppb3: Par[Par[Boolean]] = makeSlowBoolPar(true) map makeSlowBoolPar
+    val ppb1: Par[Par[Boolean]] = makeSlowBoolPar(true).map(makeSlowBoolPar)
+    val ppb2: Par[Par[Boolean]] = makeSlowBoolPar(true).map(makeSlowBoolPar)
+    val ppb3: Par[Par[Boolean]] = makeSlowBoolPar(true).map(makeSlowBoolPar)
 
     println(s"join via outside -> ${joinBlockingOutside(ppb2).run(es)}")
     println(s"join via inside -> ${joinBlockingInside(ppb3).run(es)}")
@@ -103,5 +103,4 @@ object ParParFutures2 {
     es.shutdown
 
   }
-
 }

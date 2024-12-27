@@ -43,9 +43,9 @@ object genTest {
     println("\n3 to 5 random pairs of Ints from 20 to 30 using listOfN:")
 
     def genPair1[A](g: Gen[A]): Gen[(A, A)] =
-      g listOfN Gen.unit(2) map { l => (l(0), l(1)) }
+      g listOfN Gen.unit(2).map(l => (l(0), l(1)))
 
-    for (pairInt <- genPair1(gen20to30) listOfN Gen.choose(3, 6) sample rng1) {
+    for (pairInt <- genPair1(gen20to30).listOfN(Gen.choose(3, 6)).sample(rng1) {
       println(pairInt)
     }
 
@@ -73,10 +73,10 @@ object genTest {
 
     println("\nGenerate Gen[Option[Int]] from a Gen[Int]:")
     for (rng <- Seq(rng1, rng2, rng3)) {
-      print(s"genMin(3)(gen20to30) sample ${rng}) = ")
-      println(genMin(3)(gen20to30) sample rng)
-      print(s"genMin(0)(gen20to30) sample ${rng}) = ")
-      println(genMin(0)(gen20to30) sample rng)
+      print(s"genMin(3)(gen20to30).sample(${rng}) = ")
+      println(genMin(3)(gen20to30).sample(rng))
+      print(s"genMin(0)(gen20to30).sample(${rng}) = ")
+      println(genMin(0)(gen20to30).sample(rng))
     }
 
     // Gen[A] from Gen[Option[A]]
@@ -87,11 +87,11 @@ object genTest {
 
     println("\nGenerate Gen[Int] from a Gen[Option[Int]]:")
     for (rng <- Seq(rng1, rng2, rng3)) {
-      print(s"genInt10 sample ${rng} getOrElse 42 = ")
-      println(genInt10 sample rng getOrElse 42)
-      print(s"genIntNone sample ${rng} getOrElse 42 = ")
-      println(genIntNone sample rng getOrElse 42)
-    }
+      print(s"genInt10.sample(${rng}).getOrElse(42) = ")
+      println(genInt10.sample(rng).getOrElse(42))
+      print(s"genIntNone.sample(${rng}).getOrElse(42) = ")
+      println(genIntNone.sample(rng).getOrElse(42))
+        ).
 
     // Generate some random strings
 
@@ -109,35 +109,37 @@ object genTest {
       )
 
     def genStringN(n: Int): Gen[String] =
-      genRandomChar listOfN Gen.unit(n) map { _.mkString }
+      genRandomChar.listOfN(Gen.unit(n)).map(_.mkString)
 
     val gen10RandomStrLt30: Gen[List[String]] =
-      Gen.choose(0, 31) flatMap (genStringN _) listOfN Gen.unit(10)
+      Gen.choose(0, 31).flatMap(genStringN _).listOfN(Gen.unit(10))
 
     println("\nGenerate 10 random strings of random lengths < 30:")
-    for (str <- gen10RandomStrLt30 sample rng1) println(str)
+    for (str <- gen10RandomStrLt30.sample(rng1)) {
+      println(str)
+    }
 
     // Test Gen.indexedSeqOfN class method
     type DiceRoll = Gen[Int]
     val dieRoll: DiceRoll = Gen.choose(1, 7)
     val rollFiveDice: DiceRoll =
-      dieRoll indexedSeqOfN Gen.unit(5) map { _.sum }
+      dieRoll indexedSeqOfN Gen.unit(5).map(_.sum)
     val rollFiveDiceTenToTwentyTimes =
-      rollFiveDice indexedSeqOfN Gen.choose(10, 21)
+      rollFiveDice.indexedSeqOfN(Gen.choose(10, 21))
 
     println("\nThrow 5 dice between 10 and 20 times:")
-    for (throwSome <- rollFiveDiceTenToTwentyTimes sample rng1) {
+    for (throwSome <- rollFiveDiceTenToTwentyTimes.sample(rng1)) {
       println(throwSome)
     }
     println("\nAgain, throw 5 dice between 10 and 20 times:")
-    for (throwSome <- rollFiveDiceTenToTwentyTimes sample rng2) {
+    for (throwSome <- rollFiveDiceTenToTwentyTimes.sample(rng2)) {
       println(throwSome)
     }
 
     val numTrials = 200000
     val freqFiveDiceRolls = mutable.Map[Int, Int]()
     for (ii <- 5 to 30) { freqFiveDiceRolls += (ii -> 0) }
-    for (throw5 <- rollFiveDice indexedSeqOfN Gen.unit(numTrials) sample rng1) {
+    for (throw5 <- rollFiveDice.indexedSeqOfN(Gen.unit(numTrials)).sample(rng1)) {
       freqFiveDiceRolls(throw5) += 1
     }
     println(s"\nFrequency of 5 dice rolls, ${numTrials} samples:")
@@ -149,9 +151,9 @@ object genTest {
 
     // Test Gen.map2 class method
     val twoDiceRoll = dieRoll.map2(dieRoll) { _ + _ }
-    val rollTwoDiceTenTimes = twoDiceRoll listOfN Gen.unit(20)
+    val rollTwoDiceTenTimes = twoDiceRoll.listOfN(Gen.unit(20))
     println("\nRoll 2 dice 20 times:")
-    println(rollTwoDiceTenTimes sample rng3)
+    println(rollTwoDiceTenTimes.sample(rng3))
 
     // Test Prop.forAll method
 
@@ -309,3 +311,4 @@ object genTest {
   }
 
 }
+

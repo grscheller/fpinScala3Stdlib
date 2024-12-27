@@ -74,7 +74,7 @@ object checkTest {
 
     // Provable Contrived property - change to an exhaustive test later
     val check100DieRolls: Prop = check {
-      Gen.sampleStream(dieRoll)(rng0) take 100 forAll { die =>
+      Gen.sampleStream(dieRoll)(rng0).take(100).forAll { die =>
         die >= 1 && die <= 6
       }
     }
@@ -110,3 +110,4 @@ object checkTest {
     println()
   }
 }
+

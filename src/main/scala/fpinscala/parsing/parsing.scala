@@ -18,11 +18,9 @@ trait Parsers[ParseError, Parser[+_]] { self =>
   //   run(string(s))(s) == Right(s)
 
   def or[A](s1: Parser[A], s2: Parser[A]): Parser[A]
-  implicit def string(s: String): Parser[String]
-  implicit def operators[A](p: Parser[A]) = ParserOps[A](p)
-  implicit def asStringParser[A](a: A)(implicit
-      f: A => Parser[String]
-  ): ParserOps[String] = ParserOps(f(a))
+    implicit def string(s: String): Parser[String]
+    implicit def operators[A](p: Parser[A]) = ParserOps[A](p)
+    implicit def asStringParser[A](a: A)(implicit f: A => Parser[String]): ParserOps[String] = ParserOps(f(a))
 
   case class ParserOps[A](p1: Parser[A]) {
     def |[B >: A](p2: Parser[B]): Parser[B] = self.or(p1, p2)
@@ -30,3 +28,4 @@ trait Parsers[ParseError, Parser[+_]] { self =>
   }
 
 }
+

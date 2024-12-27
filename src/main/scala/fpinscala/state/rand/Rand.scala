@@ -14,7 +14,7 @@ case class Rand[+A](action: State[RNG, A]) {
   def flatMap[B](f: A => Rand[B]): Rand[B] =
     Rand { action flatMap { a => f(a).action } }
 
-  def map[B](f: A => B): Rand[B] = Rand { action map f }
+  def map[B](f: A => B): Rand[B] = Rand { action.map(f) }
 
   def map2[B, C](rv: Rand[B])(f: (A, B) => C): Rand[C] =
     Rand { action.map2(rv.action)(f) }
@@ -71,7 +71,7 @@ object Rand {
 
   /** Change a List of rands into a rand of a List. */
   def sequence[A](rands: List[Rand[A]]): Rand[List[A]] =
-    sequenceIndexedSeq(rands.toVector) map (_.toList)
+    sequenceIndexedSeq(rands.toVector).map(_.toList)
 
   /** State action to generate a random Int.
     *

@@ -47,31 +47,11 @@ sealed trait Option[+A] {
 
   /** Fold left, could be more useful with some type variance */
   def foldLeft[B](z: B)(f: (B, A) => B): Option[B] =
-    this map ((a: A) => f(z, a))
+    this.map((a: A) => f(z, a))
 
   /** Fold right, could be more useful with some type variance */
   def foldRight[B](z: B)(f: (A, B) => B): Option[B] =
-    this map ((a: A) => f(a, z))
-
-  /**  Flatten an Option of an Option to a single Option.
-    *
-    *  @note This is tricky, type errasure in scala prevents
-    *  deep pattern matching.  I looked up how this was
-    *  done in the Scala standard library for the Option
-    *  abstract class.  The sematics is that type A is required
-    *  to be a subtype of an Option of an A supertype, hence
-    *  an option itself.  Current implementation works, but not
-    *  sure what syntaxical is meant by the syntax.
-    */
-  def flatten[B](implicit ev: A <:< Option[B]): Option[B] =
-    this match {
-      case Some(oA) => oA
-      case _        => None
-    }
-
-  /** Apply f, which may fail, to the Option, if not None */
-  def flatMap2[B](f: A => Option[B]): Option[B] =
-    (this map f).flatten
+    this.map((a: A) => f(a, z))
 
 }
 case class Some[+A](get: A) extends Option[A]
@@ -90,7 +70,7 @@ object Option {
 
   // In real life I would probably just use the map directly.
   /** Take a fucntion and "lift" it to work on options */
-  def lift[A, B](f: A => B): Option[A] => Option[B] = _ map f
+  def lift[A, B](f: A => B): Option[A] => Option[B] = _.map(f)
 
   /**  Take two Options and a function of two arguments, with no
     *  knowledge of Options, apply the function with the values
@@ -116,7 +96,7 @@ object Option {
     *  the result.
     */
   def map2[A, B, C](aO: Option[A], bO: Option[B])(f: (A, B) => C): Option[C] =
-    aO.flatMap(a => bO map (b => f(a, b)))
+    aO.flatMap(a => bO.map(b => f(a, b)))
 
   /**  Similar to Option.map2 except arguments reversed.
     *
@@ -128,7 +108,7 @@ object Option {
     *  method in the trait itself instead of the companion object.
     */
   def map2r[A, B, C](f: (A, B) => C)(aO: Option[A], bO: Option[B]): Option[C] =
-    aO.flatMap(a => bO map (b => f(a, b)))
+    aO.flatMap(a => bO.map(b => f(a, b)))
 
   /* Lift a function to the Option monad */
   def lift2[A, B, C](f: (A, B) => C): (Option[A], Option[B]) => Option[C] =

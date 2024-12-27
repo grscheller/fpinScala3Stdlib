@@ -90,17 +90,21 @@ object Prop {
 
   // Uses the companion object Prop.apply method
   // above to convert to a Prop case class.
+  // TODO: may be broken - case "wrapped wrong???"
   def forAll[A](g: Gen[A])(pred: A => Boolean): Prop = Prop { (n, rng) =>
-    Gen.sampleStream(g)(rng) zip Stream.from(0) take n map { case (a, m) =>
-      try {
-        if (pred(a))
-          Passed
-        else
-          Falsified(List(a.toString), List(None), m)
-      } catch {
-        case e: Exception => Falsified(List(a.toString), List(Some(e)), m)
-      }
-    } find (_.isFalsified) getOrElse Passed
+    Gen.sampleStream(g)(rng).zip(Stream.from(0).take(n).map(
+      { case (a, m) =>
+          try {
+            if (pred(a))
+            then
+              Passed
+            else
+              Falsified(List(a.toString), List(None), m)
+          } catch {
+            case e: Exception => Falsified(List(a.toString), List(Some(e)), m)
+          }
+        }
+    ).find(_.isFalsified().getOrElse(Passed)
   }
 
   def forAll[A](sg: SGen[A])(pred: A => Boolean): Prop = forAll(sg(_))(pred)
@@ -109,7 +113,7 @@ object Prop {
     (max, n, rng) =>
       val casesPerSize = 1 + n / max.max(1)
       val props: Stream[Prop] =
-        Stream.from(0) take (n.min(max)) map { i => forAll(f(i))(pred) }
+        Stream.from(0).take(n.min(max)).map(i => forAll(f(i))(pred))
       val prop: Prop = (props map { p =>
         Prop { (max1, _, rng1) =>
           p.run(max1, casesPerSize, rng1)
@@ -185,7 +189,7 @@ case class Gen[+A](sample: Rand[A]) {
   def flatMap[B](f: A => Gen[B]): Gen[B] =
     Gen { sample flatMap { a => f(a).sample } }
 
-  def map[B](f: A => B): Gen[B] = Gen { sample map f }
+  def map[B](f: A => B): Gen[B] = Gen { sample.map(f) }
 
   def map2[B, C](g: Gen[B])(f: (A, B) => C): Gen[C] =
     Gen { sample.map2(g.sample)(f) }

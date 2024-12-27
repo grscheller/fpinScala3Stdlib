@@ -235,7 +235,7 @@ sealed trait Stream[+A] { self =>
     )
 
   def hasSubsequence[B](sub: Stream[B]): Boolean =
-    tails exists (_ startsWith sub)
+    tails.exists(_.startsWith(sub))
 
   // Initial version - folding up into a Pair where in the
   // end we are only interest in the second element of the
@@ -325,7 +325,7 @@ object Stream {
     if (as.isEmpty)
       empty
     else
-      cons(as.head, apply(as.tail: _*))
+      cons(as.head, apply(as.tail*))
 
   /** Convert List to Stream */
   def listToStream[A](l: List[A]): Stream[A] =

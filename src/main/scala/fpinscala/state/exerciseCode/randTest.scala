@@ -32,8 +32,7 @@ object randTest {
     def dieRoll: Rand[Int] =
       Rand.nonNegInt map { die => die % 6 + 1 }
 
-    def twoDiceRoll: Rand[Int] =
-      (dieRoll map2 dieRoll) { _ + _ }
+    def twoDiceRoll: Rand[Int] = dieRoll.map2(dieRoll)(_ + _)
 
     // Roll some dice
     println("Auto rolling 2 dice 10 and 20 times -")

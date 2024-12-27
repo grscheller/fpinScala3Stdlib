@@ -31,10 +31,10 @@ object scanRightTest {
     print("\nTest tails3 (via scanRight) vs. ")
     println("Stream.tails: (via unfold)")
 
-    print("(tails3(oneTo100) drop 95).headSafe(empty).toList) = ")
-    println((tails3(oneTo100) drop 95).headSafe(empty).toList)
-    print("(oneTo100.tails drop 95).headSafe(empty).toList = ")
-    println((oneTo100.tails drop 95).headSafe(empty).toList)
+    print("tails3(oneTo100).drop(95).headSafe(empty).toList() = ")
+    println(tails3(oneTo100).drop(95).headSafe(empty).toList())
+    print("oneTo100.tails().drop(95).headSafe(empty).toList() = ")
+    println(oneTo100.tails().drop(95).headSafe(empty).toList())
 
     println()
   }

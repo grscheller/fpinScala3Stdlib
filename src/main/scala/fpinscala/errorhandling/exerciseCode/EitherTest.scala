@@ -14,7 +14,7 @@ object EitherStats {
   // for comprehension,
   /** Computes the variance of a dataset of Doubles */
   def variance(xs: Seq[Double]): Either[String, Double] =
-    mean(xs) flatMap (m => mean(xs map (x => math.pow((x - m), 2))))
+    mean(xs).flatMap(m => mean(xs.map(x => math.pow((x - m), 2))))
 
   // Translate outer chain above to a for comprehension.
   //
@@ -42,8 +42,8 @@ object EitherStats {
   //
   /** Computes the variance of a dataset of Doubles */
   def variance2(xs: Seq[Double]): Either[String, Double] =
-    mean(xs) flatMap (m =>
-      mean(xs map (x => math.pow((x - m), 2))) map (v => v)
+    mean(xs).flatMap(m =>
+      mean(xs.map(x => math.pow((x - m), 2))).map(v => v)
     )
 
   // Version using pattern matching

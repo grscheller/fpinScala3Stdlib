@@ -86,7 +86,7 @@ object ExpParTest {
     }
 
     val countDown = List.iterate(maxTerm, maxTerm + 1)(_ - 1)
-    countDown.map(en _).foldLeft(0.0)(_ + _)
+    countDown.map(en).foldLeft(0.0)(_ + _)
 
   }
 

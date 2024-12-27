@@ -220,19 +220,19 @@ object infiniteStreamTest {
     println(fromu1(-1000).dropWhile(_ < 600).take(3).toList)
 
     // Test map and mapFR directly
-    val cycle7UF = from(0) map (_ % 7)
-    val cycle11FR = from(0) mapFR (_ % 11)
+    val cycle7UF = from(0).map(_ % 7)
+    val cycle11FR = from(0).mapFR(_ % 11)
 
     println("\nTest map and mapFR directly:")
-    print("(cycle7UF take 120 drop 100).toList = ")
-    println((cycle7UF take 120 drop 100).toList)
-    print("(cycle11FR take 120 drop 100).toList = ")
-    println((cycle11FR take 120 drop 100).toList)
+    print("cycle7UF take 120 drop 100).toList() = ")
+    println(cycle7UF.take(120).drop(100).toList())
+    print("cycle11FR.take(120).drop(100).toList() = ")
+    println(cycle11FR.take(120).drop(100).toList())
 
-    print("(cycle7UF take 2020 drop 2000).toList = ")
-    println((cycle7UF take 2020 drop 2000).toList)
-    print("(cycle11FR take 2020 drop 2000).toList = ")
-    println((cycle11FR take 2020 drop 2000).toList)
+    print("cycle7UF.take(2020).drop(2000).toList() = ")
+    println(cycle7UF.take(2020).drop(2000).toList())
+    print("cycle11FR.take(2020).drop(2000).toList = ")
+    println(cycle11FR.take(2020).drop(2000).toList())
 
     // Test find
     println("\nTest find method:")
@@ -243,10 +243,10 @@ object infiniteStreamTest {
     print("range(42,1042).find(x => x % 131 == 0 && ")
     print("x % 17 == 0 && x % 19 == 0) = ")
     println(
-      range(42, 1042) find (x =>
+      range(42, 1042).find { x =>
         x % 131 == 0 &&
           x % 17 == 0 && x % 19 == 0
-      )
+      }
     )
 
     // Test zipWith and zipAll
@@ -268,7 +268,7 @@ object infiniteStreamTest {
     println("\nTest zipAll method:")
 
     print("(range(0,100,10) zipAll range(1,6)).toList = ")
-    println((range(0, 100, 10) zipAll range(1, 6)).toList)
+    println(range(0, 100, 10).zipAll(range(1, 6)).toList())
 
     println()
 

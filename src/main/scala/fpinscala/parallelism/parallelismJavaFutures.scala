@@ -190,7 +190,7 @@ object Par {
 
   /** Change a List of pars into a par of a List. */
   def sequence[A](ps: List[Par[A]]): Par[List[A]] =
-    sequenceIndexedSeq(ps.toVector) map (_.toList)
+    sequenceIndexedSeq(ps.toVector).map(_.toList)
 
   /** Create a calcultion to map over a list in parallel
     *

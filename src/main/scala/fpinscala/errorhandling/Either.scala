@@ -48,15 +48,15 @@ sealed trait Either[+E, +A] {
     * the result.
     */
   def map2[EE >: E, B, C](bE: Either[EE, B])(f: (A, B) => C): Either[EE, C] =
-    this.flatMap(a => bE map (b => f(a, b)))
+    this.flatMap(a => bE.map(b => f(a, b)))
 
   /** Fold left, more for completeness than utility */
   def foldLeft[B](z: B)(f: (B, A) => B): Either[E, B] =
-    this map ((a: A) => f(z, a))
+    this.map((a: A) => f(z, a))
 
   /** Fold right, more for completeness than utility */
   def foldRight[B](z: B)(f: (A, B) => B): Either[E, B] =
-    this map ((a: A) => f(a, z))
+    this.map((a: A) => f(a, z))
 
 }
 case class Left[+E](value: E) extends Either[E, Nothing]

@@ -9,7 +9,7 @@ object List {
 
   def apply[A](as: A*): List[A] =
     if (as.isEmpty) Nil
-    else Cons(as.head, apply(as.tail: _*))
+    else Cons(as.head, apply(as.tail*))
 
   /** A total function version where tail(Nil) == Nil */
   def tailT[A](l: List[A]): List[A] =

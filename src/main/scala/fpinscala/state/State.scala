@@ -122,6 +122,7 @@ object State {
 
   /** Change a List of state actions into a state action of a List. */
   def sequence[S, A](stateActions: List[State[S, A]]): State[S, List[A]] =
-    sequenceIndexedSeq(stateActions.toVector) map (_.toList)
+    sequenceIndexedSeq(stateActions.toVector).map(_.toList)
 
 }
+

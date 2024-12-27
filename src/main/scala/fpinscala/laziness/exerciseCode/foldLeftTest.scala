@@ -10,7 +10,7 @@ object foldLeftTest {
 
   def main(args: Array[String]): Unit = {
 
-    // foldRight vs foldLeft communitive function
+    // foldRight vs foldLeft communities function
     print("\noneTo100 = ")
     println(oneTo100.toList)
 
