@@ -18,7 +18,7 @@ Programming in Scala" by Paul Chiusana and Runar Bjarnason.
 
 ## Program [higherOrder](higherOrder.scala#L7-L44)
 
-* explores using functions as first class ojects
+* explores using functions as first class objects
 
 ## Program [myPolymorphicModule](myPolymorphicModule.scala#L3-L90)
 

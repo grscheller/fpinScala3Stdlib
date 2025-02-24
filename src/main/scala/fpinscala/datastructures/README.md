@@ -8,7 +8,7 @@ by Paul Chiusana and Runar Bjarnason.
 
 ## Trait List in package [fpinscala.datastructures.List](List.scala#L3-L6)
 
-* strict Lisp-like Cons/Nil datastructure
+* strict Lisp-like Cons/Nil data structure
 
 ## Program [ListTest](exerciseCode/ListTest.scala)
 

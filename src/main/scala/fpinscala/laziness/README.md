@@ -18,14 +18,14 @@ by Paul Chiusana and Runar Bjarnason.
 
 ## Case Class [Cons](Stream.scala#L309)
 
-* represents a contravarient stream of type A
+* represents a contravariant stream of type A
 * together with Empty, an example of an Algebraic Data Type (ADT)
 
 ## Object [Stream](Stream.scala#L311-L415)
 
 * companion object to the Stream trait
 * contains "smart" constructors
-* contains a variadic strict stream constuctor factory method (apply)
+* contains a variadic strict stream constructor factory method (apply)
 
 ## Program [StreamTest](exerciseCode/StreamTest.scala)
 
@@ -53,7 +53,7 @@ by Paul Chiusana and Runar Bjarnason.
 
 Exercises teaching the distinction between laziness and
 non-strictness.  A function being lazy means it only evaluates
-its arguments if there is a need.  This is sometimes refered to
+its arguments if there is a need.  This is sometimes referred to
 by "call by need" or "called by name."  Most languages are strict,
 they fully evaluate their arguments before they execute.  In C/C++
 and Python, short circuit && and || are "functions" which are lazy

@@ -27,7 +27,7 @@ From chapter 6.
 
 * contains utility functions for the Rand case class
 * contains various probability distributions
-* contains functions to create joint probaility distributions
+* contains functions to create joint probability distributions
 
 ## Program [randTest](../exerciseCode/randTest.scala)
 

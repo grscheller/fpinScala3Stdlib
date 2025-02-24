@@ -33,7 +33,7 @@ very similar to the scalaz monad transformer.
 * `Rand`class objects represent "Random Variables"
 * `RNG`class objects generate values from underlying probability domain space
 * given a RNG, a Rand produces a definite value
-* random variable as in probablity theory
+* random variable as in probability theory
 
 ## Program [candyMachine](exerciseCode/candyMachine.scala)
 
