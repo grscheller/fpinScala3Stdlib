@@ -1,6 +1,6 @@
-## Functional Programing in Scala leveraging Scala's Std Libraries 
+# Functional Programming in Scala leveraging Scala's Std Libraries
 
-### Description
+## Description
 
 Using the Scala3 standard libraries to work through the path laid
 out in Functional Programming in Scala by Chiusana & Bjarnason. Guided
@@ -15,7 +15,7 @@ examples of Functional Programming. By *Functional* I do not necessarily
 mean *pure*. Functional interfaces are fine. I am willing to push
 *Imperative* code to innermost scopes in thread-safe ways.
 
-### Development log:
+## Development log
 
 See the [CHANGELOG](CHANGELOG.md) for the development history of this
 project.
